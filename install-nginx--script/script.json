@@ -1,0 +1,23 @@
+{
+    "variables": {
+        "access_key": "{{env `ACCESS_KEY`}}",
+        "secret_key": "{{env `SECRET_KEY`}}"
+    },
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "region": "us-east-1",
+            "ami_name": "nginx-ami",
+            "source_ami": "ami-0fc5d935ebf8bc3bc",
+            "instance_type": "t2.micro",
+            "ssh_username": "ubuntu"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "script.sh"
+        }
+    ],
+    "sensitive-variables": ["access_key", "secret_key"]
+}
